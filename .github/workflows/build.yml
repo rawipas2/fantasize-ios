@@ -1,0 +1,31 @@
+name: SonarCloud
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    types: [opened, synchronize, reopened]
+jobs:
+  build:
+    name: Build and analyze
+    runs-on: macos-latest
+    env:
+      BUILD_WRAPPER_OUT_DIR: build_wrapper_output_directory # Directory where build-wrapper output will be placed
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - name: Install sonar-scanner and build-wrapper
+        uses: SonarSource/sonarcloud-github-c-cpp@v1
+      - name: Run build-wrapper
+        run: |
+          build-wrapper-macosx-x86 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} \
+          xcodebuild test -workspace FlowAccount/iOS/FlowAdvance.xcworkspace  \
+          -scheme FlowAdvance -destination 'platform=iOS Simulator,name=iPhone 11,OS=15.2'  \
+          -enableCodeCoverage YES COMPILER_INDEX_STORE_ENABLE=NO -showBuildSettings build test
+      - name: Run sonar-scanner
+        env:
+          GITHUB_TOKEN: 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
+          SONAR_TOKEN: f21343338c57aa8bc91504499c6d762a52a2eda3
+        run: |
+          sonar-scanner --define sonar.cfamily.build-wrapper-output="${{ env.BUILD_WRAPPER_OUT_DIR }}"
