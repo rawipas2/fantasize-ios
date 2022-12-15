@@ -21,7 +21,7 @@ jobs:
         run: |
           build-wrapper-macosx-x86 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} \
           xcodebuild test -project fantasize-ios.xcodeproj \
-          -scheme 'all' -destination 'platform=iOS Simulator,name=iPhone 11,OS=15.2'  \
+          -scheme fantasize-iosTests -destination 'platform=iOS Simulator,name=iPhone 11,OS=15.2'  \
           -enableCodeCoverage YES COMPILER_INDEX_STORE_ENABLE=NO -showBuildSettings build test
       - name: Run sonar-scanner
         env:
