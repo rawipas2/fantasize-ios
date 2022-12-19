@@ -19,6 +19,7 @@ jobs:
           xcodebuild \
           -project fantasize-ios.xcodeproj/ \
           -scheme Fantasize \
+          -destination 'platform=iOS Simulator,name=iPhone 11,OS=16.0'  \
           -derivedDataPath Build/ \
           -enableCodeCoverage YES clean build test CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
           
@@ -29,4 +30,3 @@ jobs:
         run: |
           sonar-scanner \
           --define sonar.cfamily.build-wrapper-output="${{ env.BUILD_WRAPPER_OUT_DIR }}"
-
