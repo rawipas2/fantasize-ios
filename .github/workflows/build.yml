@@ -18,11 +18,12 @@ jobs:
           build-wrapper-macosx-x86 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} \
           xcodebuild \
           -project fantasize-ios.xcodeproj/ \
+          -destination 'platform=iOS Simulator,name=iPhone 11,OS=16.0' \
           -scheme Fantasize 
       - name: Run tests to generate coverage statistics
         run: |
           xcodebuild test \
-          -destination 'platform=iOS Simulator,name=iPhone 11,OS=16.0'  \
+          -destination 'platform=iOS Simulator,name=iPhone 11,OS=16.0' \
           -derivedDataPath build/ \
           -enableCodeCoverage YES
       - name: Collect coverage into one XML report
