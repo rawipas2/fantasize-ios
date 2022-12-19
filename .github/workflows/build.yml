@@ -2,8 +2,13 @@ name: SonarCloud
 on: [pull_request]
 jobs:
   build:
-  - name: Swift Coverage Report
-    uses: maxep/spm-lcov-action@0.3.1
+  - name: Run tests
+      run: swift test --enable-code-coverage
+
+  - name: Test coverage
+    uses: maxep/spm-lcov-action@0.3.0
+    with:
+        output-file: ./coverage/lcov.info
 
 # on: [pull_request]
 # jobs:
