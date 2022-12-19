@@ -23,8 +23,9 @@ jobs:
       - name: Run tests to generate coverage statistics
         run: |
           xcodebuild test \
+          -project fantasize-ios.xcodeproj/ \
           -destination 'platform=iOS Simulator,name=iPhone 11,OS=16.0' \
-          -derivedDataPath build/ \
+          -derivedDataPath build \
           -enableCodeCoverage YES
       - name: Collect coverage into one XML report
         run: |
