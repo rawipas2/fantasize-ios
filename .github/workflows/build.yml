@@ -1,24 +1,31 @@
-name: SonarCloud
-on: [pull_request]
-jobs:
-  build:
-  - name: Run tests
-      run: swift test --enable-code-coverage
-
-  - name: Test coverage
-    uses: maxep/spm-lcov-action@0.3.0
-    with:
-        output-file: ./coverage/lcov.info
-
+name: Test Coverage
 # on: [pull_request]
 # jobs:
 #   build:
-#     name: Build and analyze
-#     runs-on: macos-latest
+#   - name: Run tests
+#       run: swift test --enable-code-coverage
+
+#   - name: Test coverage
+#     uses: maxep/spm-lcov-action@0.3.0
+#     with:
+#         output-file: ./coverage/lcov.info
+
+on: [pull_request]
+jobs:
+  build:
+    name: Build and analyze
+    runs-on: macos-latest
 #     env:
 #       SONAR_SERVER_URL: "https://sonarcloud.io"
 #       BUILD_WRAPPER_OUT_DIR: build_wrapper_output_directory # Directory where build-wrapper output will be placed
-#     steps:
+    jobs:
+    - name: Run tests
+      run: swift test --enable-code-coverage
+
+    - name: Test coverage
+      uses: maxep/spm-lcov-action@0.3.0
+      with:
+          output-file: ./coverage/lcov.info
 #       - uses: actions/checkout@v3
 #         with:
 #           fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
