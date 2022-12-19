@@ -43,7 +43,8 @@ jobs:
       with:
         xcode-version: 11.5
     - name: Build and test
-      run: xcodebuild \
+      run: |
+      xcodebuild test\
       -project fantasize-ios.xcodeproj \
       -scheme Fantasize \
       -destination platform=iOS\ Simulator,name=iPhone\ 11,OS=latest test
