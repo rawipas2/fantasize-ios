@@ -15,6 +15,7 @@ jobs:
         uses: SonarSource/sonarcloud-github-c-cpp@v1
       - name: Run build-wrapper
         run: |
+          build-wrapper-macosx-x86 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} \\
           xcodebuild test \
           -project fantasize-ios.xcodeproj \
           -scheme Fantasize \
