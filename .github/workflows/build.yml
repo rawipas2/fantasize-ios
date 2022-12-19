@@ -6,7 +6,7 @@ jobs:
     runs-on: macos-latest
     env:
       SONAR_SERVER_URL: "https://sonarcloud.io"
-      # BUILD_WRAPPER_OUT_DIR: fantasize-code-coverage # Directory where build-wrapper output will be placed
+      BUILD_WRAPPER_OUT_DIR: TestResults # Directory where build-wrapper output will be placed
     steps:
       - uses: actions/checkout@v3
         with:
@@ -20,11 +20,12 @@ jobs:
           -scheme Fantasize \
           -destination 'platform=iOS Simulator,name=iPhone 11,OS=16.0'  \
           -enableCodeCoverage YES COMPILER_INDEX_STORE_ENABLE=NO \
+          -resultBundlePath TestResults \
           -showBuildSettings build test
       - name: Run sonar-scanner
         env:
           GITHUB_TOKEN: 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
           SONAR_TOKEN: 52ee2f2305bbf4d3f233f1d02f16535c2722b92a
         run: |
-          sonar-scanner 
-        #   --define sonar.cfamily.build-wrapper-output="${{ env.BUILD_WRAPPER_OUT_DIR }}"
+          sonar-scanner \
+          --define sonar.cfamily.build-wrapper-output="${{ env.BUILD_WRAPPER_OUT_DIR }}"
