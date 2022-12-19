@@ -1,61 +1,32 @@
 name: SonarCloud
-# on: [pull_request]
-# jobs:
-#   build:
-#     name: Build and analyze
-#     runs-on: macos-latest
-#     env:
-#       SONAR_SERVER_URL: "https://sonarcloud.io"
-#       BUILD_WRAPPER_OUT_DIR: fantasize-code-coverage/ # Directory where build-wrapper output will be placed
-#     steps:
-#       - uses: actions/checkout@v3
-#         with:
-#           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-#       - name: Install sonar-scanner and build-wrapper
-#         uses: SonarSource/sonarcloud-github-c-cpp@v1
-#       - name: Run build-wrapper
-#         run: |
-#           build-wrapper-macosx-x86 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} \
-#           xcodebuild test \
-#           -project fantasize-ios.xcodeproj \
-#           -scheme Fantasize \
-#           -destination 'platform=iOS Simulator,name=iPhone 11,OS=16.0'  \
-#           -enableCodeCoverage YES COMPILER_INDEX_STORE_ENABLE=NO \
-#           -resultBundlePath ${{ env.BUILD_WRAPPER_OUT_DIR }} \
-#           -showBuildSettings build test
-#       - name: Run sonar-scanner
-#         env:
-#           GITHUB_TOKEN: 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
-#           SONAR_TOKEN: 52ee2f2305bbf4d3f233f1d02f16535c2722b92a
-#         run: |
-#           sonar-scanner \
-#           --define sonar.cfamily.build-wrapper-output="${{ env.BUILD_WRAPPER_OUT_DIR }}"
-#platform=iOS\ Simulator,name=iPhone 11,OS=latest test
-on: [push]
-
+on: [pull_request]
 jobs:
   build:
+    name: Build and analyze
     runs-on: macos-latest
+    env:
+      SONAR_SERVER_URL: "https://sonarcloud.io"
+      BUILD_WRAPPER_OUT_DIR: fantasize-code-coverage/ # Directory where build-wrapper output will be placed
     steps:
-    - uses: actions/checkout@v3
-      with:
-        fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-    - name: Install sonar-scanner and build-wrapper
-      uses: SonarSource/sonarcloud-github-c-cpp@v1
-    - uses: actions/checkout@v2
-    - name: Set up Xcode
-      uses: actions/setup-xcode@v1
-      # with:
-      #   xcode-version: 14.2
-    - name: Build and test
-      run: |
-      xcodebuild test \
-      -project fantasize-ios.xcodeproj \
-      -scheme Fantasize \
-      -destination 'platform=iOS Simulator,name=iPhone 11,OS=latest test'  
-    - name: Analyze with SonarCloud
-      uses: sonarsource/sonarcloud-github-action@master
-      env:
-        GITHUB_TOKEN: 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
-        SONAR_TOKEN: 52ee2f2305bbf4d3f233f1d02f16535c2722b92a
-        SONAR_HOST_URL: https://sonarcloud.io
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - name: Install sonar-scanner and build-wrapper
+        uses: SonarSource/sonarcloud-github-c-cpp@v1
+      - name: Run build-wrapper
+        run: |
+          build-wrapper-macosx-x86 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} \
+          xcodebuild \
+          -project fantasize-ios.xcodeproj/ \
+          -scheme Fantasize \
+          -derivedDataPath Build/ \
+          -enableCodeCoverage YES clean build test CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+          
+      - name: Run sonar-scanner
+        env:
+          GITHUB_TOKEN: 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
+          SONAR_TOKEN: 52ee2f2305bbf4d3f233f1d02f16535c2722b92a
+        run: |
+          sonar-scanner \
+          --define sonar.cfamily.build-wrapper-output="${{ env.BUILD_WRAPPER_OUT_DIR }}"
+
