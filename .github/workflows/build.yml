@@ -30,7 +30,7 @@ name: SonarCloud
 #         run: |
 #           sonar-scanner \
 #           --define sonar.cfamily.build-wrapper-output="${{ env.BUILD_WRAPPER_OUT_DIR }}"
-
+#platform=iOS\ Simulator,name=iPhone 11,OS=latest test
 on: [push]
 
 jobs:
@@ -44,10 +44,10 @@ jobs:
         xcode-version: 11.5
     - name: Build and test
       run: |
-      xcodebuild test\
+      xcodebuild test \
       -project fantasize-ios.xcodeproj \
       -scheme Fantasize \
-      -destination platform=iOS\ Simulator,name=iPhone\ 11,OS=latest test
+      -destination 'platform=iOS Simulator,name=iPhone 11,OS=latest test'  
     - name: Analyze with SonarCloud
       uses: sonarsource/sonarcloud-github-action@master
       env:
