@@ -17,7 +17,7 @@ jobs:
           xcodebuild test \
           -project fantasize-ios.xcodeproj \
           -scheme Fantasize \
-          -destination 'platform=iOS Simulator,name=iPhone 11,OS=16'  \
+          -destination 'platform=iOS Simulator,name=iPhone 11,OS=16.0'  \
           -enableCodeCoverage YES COMPILER_INDEX_STORE_ENABLE=NO \
           -showBuildSettings build test
       - name: Run sonar-scanner
