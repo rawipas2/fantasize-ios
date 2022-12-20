@@ -1,12 +1,9 @@
 name: SonarCloud
 on: [pull_request]
 jobs:
-  build:
-    name: Build and analyze
+  sonarcloud:
+    name: SonarCloud
     runs-on: ubuntu-latest #self-hosted
-    env:
-      SONAR_SERVER_URL: "https://sonarcloud.io"
-      BUILD_WRAPPER_OUT_DIR: build_wrapper_output_directory # Directory where build-wrapper output will be placed
     steps:
       - uses: actions/checkout@v2
         with:
