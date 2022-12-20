@@ -15,7 +15,10 @@ jobs:
         uses: SonarSource/sonarcloud-github-c-cpp@v1
       - name: Run build-wrapper
         run: |
-          build-wrapper-macosx-x86 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} xcodebuild
+          build-wrapper-macosx-x86 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} \
+          xcodebuild clean build \
+          -project fantasize-ios.xcodeproj \
+          -destination 'platform=iOS Simulator,name=iPhone 11,OS=16.0' \
       - name: Run tests to generate coverage statistics
         run: |
           xcodebuild test \
