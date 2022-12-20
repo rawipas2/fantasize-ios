@@ -27,8 +27,8 @@ jobs:
           -derivedDataPath build \
           -enableCodeCoverage YES
       - name: Collect coverage into one XML report
-        run: |
-          bash xccov-to-generic.sh build/Logs/Test/*.xcresult/ > generic-coverage.xml
+        # run: |
+        #   bash xccov-to-generic.sh build/Logs/Test/*.xcresult/ > generic-coverage.xml
       - name: Run sonar-scanner
         env:
           GITHUB_TOKEN: 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
