@@ -10,15 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
-      # - name: Install sonar-scanner and build-wrapper
-      #   uses: SonarSource/sonarcloud-github-c-cpp@v1
-      # - name: Run build-wrapper
-      #   run: |
-      #     build-wrapper-macosx-x86 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} \
-      #     xcodebuild clean build \
-      #     -project fantasize-ios.xcodeproj \
-      #     -destination 'platform=iOS Simulator,name=iPhone 11,OS=16.0' \
+          fetch-depth: 0 
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
