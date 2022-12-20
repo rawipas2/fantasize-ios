@@ -6,7 +6,7 @@ jobs:
     runs-on: self-hosted
     env:
       SONAR_SERVER_URL: "https://sonarcloud.io"
-      BUILD_WRAPPER_OUT_DIR: fantasize-code-coverage # Directory where build-wrapper output will be placed
+      BUILD_WRAPPER_OUT_DIR: build_wrapper_output_directory # Directory where build-wrapper output will be placed
     steps:
       - uses: actions/checkout@v3
         with:
@@ -15,11 +15,7 @@ jobs:
         uses: SonarSource/sonarcloud-github-c-cpp@v1
       - name: Run build-wrapper
         run: |
-          build-wrapper-macosx-x86 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} \
-          xcodebuild clean build \
-          -project fantasize-ios.xcodeproj/ \
-          -destination 'platform=iOS Simulator,name=iPhone 11,OS=16.0' \
-          -scheme Fantasize 
+          build-wrapper-macosx-x86 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} xcodebuild
       - name: Run tests to generate coverage statistics
         run: |
           xcodebuild test \
