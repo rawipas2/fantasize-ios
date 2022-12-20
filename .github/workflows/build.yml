@@ -3,7 +3,7 @@ on: [pull_request]
 jobs:
   build:
     name: Build and analyze
-    runs-on: self-hosted
+    runs-on: macos-latest
     env:
       SONAR_SERVER_URL: "https://sonarcloud.io"
       BUILD_WRAPPER_OUT_DIR: build_wrapper_output_directory # Directory where build-wrapper output will be placed
