@@ -8,7 +8,7 @@ jobs:
       SONAR_SERVER_URL: "https://sonarcloud.io"
       BUILD_WRAPPER_OUT_DIR: build_wrapper_output_directory # Directory where build-wrapper output will be placed
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
         with:
           fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
       # - name: Install sonar-scanner and build-wrapper
@@ -19,7 +19,12 @@ jobs:
       #     xcodebuild clean build \
       #     -project fantasize-ios.xcodeproj \
       #     -destination 'platform=iOS Simulator,name=iPhone 11,OS=16.0' \
-      - name: Run tests to generate coverage statistics
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: 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
+          SONAR_TOKEN: 52ee2f2305bbf4d3f233f1d02f16535c2722b92a
+        - name: Run tests to generate coverage statistics
         run: |
           xcodebuild test \
           -project fantasize-ios.xcodeproj \
@@ -29,14 +34,9 @@ jobs:
       - name: Collect coverage into one XML report
         run: |
           bash xccov-to-generic.sh build/Logs/Test/*.xcresult/ > generic-coverage.xml
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: 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
-          SONAR_TOKEN: 52ee2f2305bbf4d3f233f1d02f16535c2722b92a
         run: |
           sonar-scanner \
-          --define sonar.cfamily.build-wrapper-output="${{ env.BUILD_WRAPPER_OUT_DIR }}" \
+        # --define sonar.cfamily.build-wrapper-output="${{ env.BUILD_WRAPPER_OUT_DIR }}" \
           --define sonar.coverageReportPaths=generic-coverage.xml
 
 
