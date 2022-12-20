@@ -1,3 +1,7 @@
+name: Build and analyze
+on: [pull_request]
+jobs:
+  build:
     name: Build and analyze
     runs-on: self-hosted
     env:
