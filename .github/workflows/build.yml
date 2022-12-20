@@ -11,14 +11,14 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
-      - name: Install sonar-scanner and build-wrapper
-        uses: SonarSource/sonarcloud-github-c-cpp@v1
-      - name: Run build-wrapper
-        run: |
-          build-wrapper-macosx-x86 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} \
-          xcodebuild clean build \
-          -project fantasize-ios.xcodeproj \
-          -destination 'platform=iOS Simulator,name=iPhone 11,OS=16.0' \
+      # - name: Install sonar-scanner and build-wrapper
+      #   uses: SonarSource/sonarcloud-github-c-cpp@v1
+      # - name: Run build-wrapper
+      #   run: |
+      #     build-wrapper-macosx-x86 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} \
+      #     xcodebuild clean build \
+      #     -project fantasize-ios.xcodeproj \
+      #     -destination 'platform=iOS Simulator,name=iPhone 11,OS=16.0' \
       - name: Run tests to generate coverage statistics
         run: |
           xcodebuild test \
@@ -29,7 +29,8 @@ jobs:
       - name: Collect coverage into one XML report
         run: |
           bash xccov-to-generic.sh build/Logs/Test/*.xcresult/ > generic-coverage.xml
-      - name: Run sonar-scanner
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
         env:
           GITHUB_TOKEN: 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
           SONAR_TOKEN: 52ee2f2305bbf4d3f233f1d02f16535c2722b92a
