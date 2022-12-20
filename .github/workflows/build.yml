@@ -26,7 +26,7 @@ jobs:
           -destination 'platform=iOS Simulator,name=iPhone 11,OS=16.0' \
           -derivedDataPath build \
           -enableCodeCoverage YES
-      - name: Collect coverage into one XML report
+      # - name: Collect coverage into one XML report
         # run: |
         #   bash xccov-to-generic.sh build/Logs/Test/*.xcresult/ > generic-coverage.xml
       - name: Run sonar-scanner
