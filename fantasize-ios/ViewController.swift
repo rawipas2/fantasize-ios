@@ -16,6 +16,10 @@ class ViewController: UIViewController {
         // Test
     }
 
+    func testInitial () {
+        // body somthing
+    }
+
 
 }
 
