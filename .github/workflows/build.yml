@@ -11,15 +11,15 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
-      - name: Run build-wrapper
-        run: |
-          build-wrapper-macosx-x86 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} \
-          xcodebuild test \
-          -project fantasize-ios.xcodeproj \
-          -scheme Fantasize \
-          -destination 'platform=iOS Simulator,name=iPhone 11,OS=16.0' \
-          -enableCodeCoverage YES \
-          -showBuildSettings build test
+      # - name: Run build-wrapper
+      #   run: |
+      #     build-wrapper-macosx-x86 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} \
+      #     xcodebuild test \
+      #     -project fantasize-ios.xcodeproj \
+      #     -scheme Fantasize \
+      #     -destination 'platform=iOS Simulator,name=iPhone 11,OS=16.0' \
+      #     -enableCodeCoverage YES \
+      #     -showBuildSettings build test
       - name: Run sonar-scanner
         env:
           GITHUB_TOKEN: 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
