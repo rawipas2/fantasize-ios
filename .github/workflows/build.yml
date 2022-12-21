@@ -27,6 +27,6 @@ jobs:
         run: |
           sonar-scanner \
           --define sonar.cfamily.build-wrapper-output="${{ env.BUILD_WRAPPER_OUT_DIR }}" \
-          --define sonar.coverageReportPaths=generic-coverage.xml
+        #  --define sonar.coverageReportPaths=generic-coverage.xml
 
 
