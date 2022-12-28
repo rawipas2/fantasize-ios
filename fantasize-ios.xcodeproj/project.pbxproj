@@ -101,9 +101,8 @@
 		2DECDE34294AE8AC0055DDDC /* fantasize-ios */ = {
 			isa = PBXGroup;
 			children = (
-				2DECDE35294AE8AC0055DDDC /* AppDelegate.swift */,
-				2DECDE37294AE8AC0055DDDC /* SceneDelegate.swift */,
-				2DECDE39294AE8AC0055DDDC /* ViewController.swift */,
+				394F499A295C3F6A00FA1612 /* Delegate */,
+				394F4999295C3F5A00FA1612 /* Controller */,
 				39AEFEA2295BF4080053285D /* TestCode.swift */,
 				2DECDE3B294AE8AC0055DDDC /* Main.storyboard */,
 				2DECDE3E294AE8AD0055DDDC /* Assets.xcassets */,
@@ -128,6 +127,23 @@
 				2DECDE58294AE8AD0055DDDC /* fantasize_iosUITestsLaunchTests.swift */,
 			);
 			path = "fantasize-iosUITests";
+			sourceTree = "<group>";
+		};
+		394F4999295C3F5A00FA1612 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2DECDE39294AE8AC0055DDDC /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		394F499A295C3F6A00FA1612 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				2DECDE35294AE8AC0055DDDC /* AppDelegate.swift */,
+				2DECDE37294AE8AC0055DDDC /* SceneDelegate.swift */,
+			);
+			path = Delegate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
