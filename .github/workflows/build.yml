@@ -28,6 +28,7 @@ jobs:
         run: |
           sonar-scanner \
           --define sonar.modules=Controller
+          --define sonar.sources=.
           --define Controller.sonar.projectName=Controller
           --define sonar.cfamily.build-wrapper-output="${{ env.BUILD_WRAPPER_OUT_DIR }}" 
 
