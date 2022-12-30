@@ -6,11 +6,15 @@
 	<dict>
 		<key>Fantasize.xcscheme_^#shared#^_</key>
 		<dict>
+			<key>isShown</key>
+			<true/>
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
-		<key>fantasize-ios.xcscheme_^#shared#^_</key>
+		<key>fantasize-ios.xcscheme</key>
 		<dict>
+			<key>isShown</key>
+			<false/>
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>

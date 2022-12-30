@@ -17,7 +17,7 @@ jobs:
           build-wrapper-macosx-x86 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} \
           xcodebuild test \
           -project fantasize-ios.xcodeproj \
-          -scheme Fantasize \
+          -scheme fantasize-iosTests \
           -destination 'platform=iOS Simulator,name=iPhone 11,OS=16.0' \
           -enableCodeCoverage YES \
           -showBuildSettings build test
