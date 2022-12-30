@@ -16,6 +16,7 @@
 		2DECDE4D294AE8AD0055DDDC /* fantasize_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DECDE4C294AE8AD0055DDDC /* fantasize_iosTests.swift */; };
 		2DECDE57294AE8AD0055DDDC /* fantasize_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DECDE56294AE8AD0055DDDC /* fantasize_iosUITests.swift */; };
 		2DECDE59294AE8AD0055DDDC /* fantasize_iosUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DECDE58294AE8AD0055DDDC /* fantasize_iosUITestsLaunchTests.swift */; };
+		39AEFEA3295BF4080053285D /* TestCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AEFEA2295BF4080053285D /* TestCode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		2DECDE52294AE8AD0055DDDC /* fantasize-iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fantasize-iosUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DECDE56294AE8AD0055DDDC /* fantasize_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fantasize_iosUITests.swift; sourceTree = "<group>"; };
 		2DECDE58294AE8AD0055DDDC /* fantasize_iosUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fantasize_iosUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		39AEFEA2295BF4080053285D /* TestCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,9 +101,9 @@
 		2DECDE34294AE8AC0055DDDC /* fantasize-ios */ = {
 			isa = PBXGroup;
 			children = (
-				2DECDE35294AE8AC0055DDDC /* AppDelegate.swift */,
-				2DECDE37294AE8AC0055DDDC /* SceneDelegate.swift */,
-				2DECDE39294AE8AC0055DDDC /* ViewController.swift */,
+				394F499A295C3F6A00FA1612 /* Delegate */,
+				394F4999295C3F5A00FA1612 /* Controller */,
+				39AEFEA2295BF4080053285D /* TestCode.swift */,
 				2DECDE3B294AE8AC0055DDDC /* Main.storyboard */,
 				2DECDE3E294AE8AD0055DDDC /* Assets.xcassets */,
 				2DECDE40294AE8AD0055DDDC /* LaunchScreen.storyboard */,
@@ -125,6 +127,23 @@
 				2DECDE58294AE8AD0055DDDC /* fantasize_iosUITestsLaunchTests.swift */,
 			);
 			path = "fantasize-iosUITests";
+			sourceTree = "<group>";
+		};
+		394F4999295C3F5A00FA1612 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2DECDE39294AE8AC0055DDDC /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		394F499A295C3F6A00FA1612 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				2DECDE35294AE8AC0055DDDC /* AppDelegate.swift */,
+				2DECDE37294AE8AC0055DDDC /* SceneDelegate.swift */,
+			);
+			path = Delegate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,6 +277,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39AEFEA3295BF4080053285D /* TestCode.swift in Sources */,
 				2DECDE3A294AE8AC0055DDDC /* ViewController.swift in Sources */,
 				2DECDE36294AE8AC0055DDDC /* AppDelegate.swift in Sources */,
 				2DECDE38294AE8AC0055DDDC /* SceneDelegate.swift in Sources */,

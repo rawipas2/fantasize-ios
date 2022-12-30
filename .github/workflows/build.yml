@@ -3,30 +3,31 @@ on: [pull_request]
 jobs:
   build:
     name: Build and analyze
-    runs-on: self-hosted
+    runs-on: macos-latest
     env:
-      # SONAR_SERVER_URL: "https://sonarcloud.io"
       BUILD_WRAPPER_OUT_DIR: build_wrapper_output_directory # Directory where build-wrapper output will be placed
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@master
         with:
-          fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
-      # - name: Run build-wrapper
-      #   run: |
-      #     build-wrapper-macosx-x86 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} \
-      #     xcodebuild test \
-      #     -project fantasize-ios.xcodeproj \
-      #     -scheme Fantasize \
-      #     -destination 'platform=iOS Simulator,name=iPhone 11,OS=16.0' \
-      #     -enableCodeCoverage YES \
-      #     -showBuildSettings build test
+          fetch-depth: 0
+      - name: Install sonar-scanner and build-wrapper
+        uses: SonarSource/sonarcloud-github-c-cpp@v1
+      - name: Run build-weapper
+        run: |
+          build-wrapper-macosx-x86 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} \
+          xcodebuild test \
+          -project fantasize-ios.xcodeproj \
+          -scheme Fantasize \
+          -destination 'platform=iOS Simulator,name=iPhone 11,OS=16.0' \
+          -enableCodeCoverage YES \
+          -showBuildSettings build test
       - name: Run sonar-scanner
         env:
           GITHUB_TOKEN: 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
           SONAR_TOKEN: 52ee2f2305bbf4d3f233f1d02f16535c2722b92a
         run: |
           sonar-scanner \
-          --define sonar.cfamily.build-wrapper-output="${{ env.BUILD_WRAPPER_OUT_DIR }}" \
-        #  --define sonar.coverageReportPaths=generic-coverage.xml
+          --define sonar.exclusions=**/*Controller.swift
+          --define sonar.cfamily.build-wrapper-output="${{ env.BUILD_WRAPPER_OUT_DIR }}" 
 
 
